@@ -1,5 +1,6 @@
 package com.example.myapplication5;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             mOnBtn.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("MissingPermission")
                 @Override
                 public void onClick(View v) {
                     if (!bluetoothAdapter.isEnabled()) {
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
             });
 
             mDiscoverBtn.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("MissingPermission")
                 @Override
                 public void onClick(View v) {
                     if (!bluetoothAdapter.isDiscovering()) {
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             mOffBtn.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("MissingPermission")
                 @Override
                 public void onClick(View v) {
                     if (bluetoothAdapter.isEnabled()) {
@@ -91,11 +95,12 @@ public class MainActivity extends AppCompatActivity {
             });
 
             mPairedBtn.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("MissingPermission")
                 @Override
                 public void onClick(View v) {
                     if (bluetoothAdapter.isEnabled()) {
                         mPairedTv.setText("Paired Devices");
-                        Set<BluetoothDevice> devices = bluetoothAdapter.getBondedDevices();
+                        @SuppressLint("MissingPermission") Set<BluetoothDevice> devices = bluetoothAdapter.getBondedDevices();
 
                         for (BluetoothDevice device : devices) {
                             mPairedTv.append("\n Device : " + device.getName() + " , " + device);
